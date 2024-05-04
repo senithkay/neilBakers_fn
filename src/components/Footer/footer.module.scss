@@ -1,0 +1,13 @@
+@use '../../styles/typography.scss' as typography;
+
+.wrapper{
+    display: flex;
+    height: 2.6875rem;
+    justify-content: flex-end;
+    align-items: center;
+
+    p{
+        @include typography.body-3;
+        margin-right: 2rem;
+    }
+}

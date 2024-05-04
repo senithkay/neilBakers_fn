@@ -1,0 +1,75 @@
+@use "../../styles/typography.scss";
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.topContainer {
+    p {
+        @include typography.title-2;
+        color: #b28e00;
+    }
+}
+
+.middleContainer {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    border-radius: 0.625rem;
+    background: #fff;
+    margin: 1rem 2rem;
+    padding: 2rem 4rem;
+
+    .inputWrapper {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+
+        label {
+            @include typography.body-1;
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+
+        input {
+            padding: 0.5rem;
+            max-width: 20.4375rem;
+            border-radius: 0.25rem;
+            border: 1px solid rgba(0, 0, 0, 0.5);
+            background: rgba(217, 217, 217, 0.5);
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        textarea {
+            resize: none;
+            height: 8rem;
+            border-radius: 0.25rem;
+            border: 1px solid rgba(0, 0, 0, 0.5);
+            background: rgba(217, 217, 217, 0.5);
+        }
+
+        .descriptionText {
+            margin-top: 2rem;
+        }
+    }
+}
+
+.inputContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.bottomContainer {
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.625rem;
+    background: #fff;
+    margin: 1rem 2rem;
+    padding: 2rem 4rem;
+    height: 15.9375rem;
+}

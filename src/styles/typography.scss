@@ -1,0 +1,86 @@
+$font-main: "Montserrat", sans-serif;
+$font-secondary: "Inter", sans-serif;
+
+/*------Title------*/
+@mixin title-1 {
+    font-family: $font-main;
+    font-size: 1.8rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+@mixin title-2 {
+    font-family: $font-main;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+@mixin title-3 {
+    font-family: $font-main;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+@mixin subTitle-1 {
+    font-family: $font-main;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+@mixin subTitle-2 {
+    font-family: $font-main;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/*------Body------*/
+@mixin body-1 {
+    font-family: $font-secondary;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 175%;
+}
+
+@mixin body-2 {
+    font-family: $font-secondary;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 175%;
+}
+
+@mixin body-3 {
+    font-family: $font-secondary;
+    font-size: 0.8125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+}
+
+
+@mixin body-4 {
+    font-family: $font-secondary;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+
+@mixin body-5 {
+    font-family: $font-main;
+    font-size: 0.9rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}

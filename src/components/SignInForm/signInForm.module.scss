@@ -1,0 +1,137 @@
+@use "../../styles/typography.scss";
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 23.25rem;
+}
+
+.companyDetails {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    img {
+        width: 2.625rem;
+        height: 2.625rem;
+    }
+
+    p {
+        @include typography.title-1;
+        color: #000;
+    }
+}
+
+.textContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+
+    .title {
+        @include typography.title-3;
+        color: #000;
+        text-align: center;
+    }
+
+    .description {
+        @include typography.body-2;
+        color: #8a92a6;
+        line-height: 175%;
+        font-size: 0.9rem;
+        text-align: center;
+    }
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    width: 100%;
+
+    label {
+        @include typography.body-2;
+        color: #8a92a6;
+        line-height: 175%;
+        font-size: 0.9rem;
+    }
+}
+
+.emailConatainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+
+    input {
+        padding: 0.5rem 1rem;
+        border-radius: 0.25rem;
+        border: 1px solid var(--B28E00-Dark-Pending, #b28e00);
+    }
+}
+
+.passwordContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+
+    input {
+        padding: 0.5rem 1rem;
+        border-radius: 0.25rem;
+        border: 1px solid var(--B28E00-Dark-Pending, #b28e00);
+    }
+}
+
+.forgotContainer {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    label {
+        @include typography.body-2;
+        color: #8a92a6;
+        line-height: 175%;
+        font-size: 0.9rem;
+    }
+
+    input {
+        width: 1rem;
+        height: 1rem;
+    }
+
+    p {
+        @include typography.body-2;
+        color: #b28e00;
+        line-height: 175%;
+        font-size: 0.9rem;
+        align-self: flex-end;
+    }
+}
+
+.rememberContainer{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.siginButton{
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+    background-color: var(--B28E00-Dark-Pending, #b28e00);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    max-width: 11.5rem;
+    width: 100%;
+    margin-top: 4rem;
+
+    &:hover {
+        background-color: var(--B28E00-Dark-Hover, #b28e00cb);
+    }
+}

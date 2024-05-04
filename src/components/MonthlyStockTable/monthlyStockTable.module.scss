@@ -1,0 +1,52 @@
+@use "../../styles/typography.scss";
+
+.table {
+    background: #fff3e3;
+    border-radius: 0.625rem;
+    padding: 0.5rem;
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        border: 1px solid rgba(184, 142, 47, 0.6);
+        border-radius: 5px;
+        overflow: hidden;
+        margin-bottom: 20px;
+
+        thead {
+            color: #000;
+            font-weight: 600;
+            text-align: left;
+
+            th {
+                padding: 10px;
+                border: 1px solid rgba(184, 142, 47, 0.6);
+                height: 2rem;
+            }
+        }
+
+        tbody {
+            tr {
+                td {
+                    padding: 3px 10px;
+                    border: 1px solid rgba(184, 142, 47, 0.6);
+                    @include typography.body-2;
+                }
+            }
+        }
+
+        tfoot {
+
+            tr {
+
+                td {
+                    padding-top: 10px;
+                    padding-left: 10px;
+                    border: 1px solid rgba(184, 142, 47, 0.6);
+                    @include typography.body-2;
+                }
+            }
+        }
+    }
+}

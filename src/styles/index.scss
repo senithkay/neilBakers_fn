@@ -1,0 +1,50 @@
+@use "./typography.scss";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+    font-family: typography.$font-main;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    width: 100%;
+
+    // height: 100vh;
+}
+
+.main {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.menuContainer {
+    width: 16.5rem;
+    height: 100vh;
+    overflow-y: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+}
+
+.contentContainer {
+    height: 100%;
+    width: calc(100% - 16.5rem);
+    overflow: hidden;
+}
+
+.outlet {
+    background-color: #e9ecef;
+    height: calc(100% - 7.4375rem);
+    overflow-y: auto;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+}

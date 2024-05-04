@@ -1,0 +1,120 @@
+@use "../../styles/typography.scss";
+
+.tr {
+    width: 100%;
+    height: auto;
+    display: flex;
+    border-bottom: 1px solid #f0f1f3;
+    background: #fff;
+    z-index: -1;
+    
+}
+
+.td {
+    display: flex;
+    height: auto;
+    align-items: center;
+    flex: 1;
+    border-bottom: 1px solid #f0f1f3;
+    background: #fff;
+    height: 2.75rem;
+   
+}
+
+.td1 {
+    width: 20%;
+    text-align: center;
+    display: flex;
+    padding-left: 1.375rem;
+    align-items: center;
+    gap: 0.5rem;
+
+    
+}
+
+.td2 {
+    width: 15%;
+    text-align: center;
+    display: flex;
+    padding-left: 1.375rem;
+    align-items: center;
+    gap: 0.5rem;
+    // @include typography.font-body-6;
+    color: #1D1F2C;
+    justify-content: center;
+}
+
+.td3 {
+    width: 15%;
+    text-align: center;
+    display: flex;
+    padding-left: 1.375rem;
+    align-items: center;
+    gap: 0.5rem;
+    // @include typography.font-body-3;
+    color: #667085;
+    justify-content: center;
+}
+
+.td4{
+    width: 15%;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+}
+
+
+.td5{
+    width: 15%;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.td6{
+    width: 22%;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+}
+
+
+.th1,
+.th2,
+.th3,
+.th4,
+.th5,
+.th6 {
+    @include typography.body-4;
+    color: #4a4c56;
+   
+}
+
+/*-------action--------*/
+.action {
+    display: flex;
+    height: 2.75rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+
+    button{
+        background: none;
+        border: none;
+        cursor: pointer;
+
+        img{
+            width: 1rem;
+            height: 1rem;
+        }
+    }
+}
+

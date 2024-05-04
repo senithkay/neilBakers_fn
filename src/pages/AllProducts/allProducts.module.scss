@@ -1,0 +1,75 @@
+@use "../../styles/typography.scss";
+
+.wrapper {
+    display: flex;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.topContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    p{
+        @include typography.title-2;
+        color: #B28E00;
+    }
+}
+
+.sortingContainer {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.searchBar {
+    display: flex;
+    width: 16.25rem;
+    height: 2.5rem;
+    padding-left: 2rem;
+    padding-right: 1rem;
+    border-radius: 3.125rem;
+    border: none;
+    outline: none;
+
+    &:active {
+        border: none;
+        outline: none;
+    }
+}
+
+.sortingSelect{
+    display: flex;
+    width: 16.25rem;
+    height: 2.5rem;
+    padding-left: 2rem;
+    padding-right: 1rem;
+    border-radius: 3.125rem;
+    border: none;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    .default{
+        display: none;
+    }
+
+    &:active {
+        border: none;
+        outline: none;
+    }
+
+    option{
+        background-color: white;
+        color: black;
+    }
+
+    option:checked{
+        background-color: #F2F2F2;
+    }
+}
+
