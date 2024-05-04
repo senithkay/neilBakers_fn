@@ -4,7 +4,8 @@ import WeeklyStockTable from "../../components/WeeklyStockTable/WeeklyStockTable
 import DateRangePicker from "../../components/RangePicker/RangePicker";
 import dayjs from 'dayjs';
 import {useParams} from "react-router-dom";
-import {sendGet} from "../../utils/apiHelper.ts";
+import {sendGET} from "../../utils/apiHelper.ts";
+import {GET_WEEKLY_REPORT} from "../../utils/apiRoute.ts";
 
 const WeeklyStockReport = () => {
     const [startDate, setStartDate] = useState<dayjs.Dayjs | null>(null);
@@ -22,15 +23,11 @@ const WeeklyStockReport = () => {
             toDate =  endDate.format('YYYY-MM-DD');
         }
         const params = [{key : 'id', value: id}, {key : 'fromDate', value: fromDate}, {key : 'toDate', value: toDate}]
-        sendGet('/report/weekly', params)
-        fetch(`http://localhost:3000/report/weekly/${id}/${fromDate}/${toDate}`, {credentials: 'include'})
-            .then((result) => {
-                return result.json();
-            })
+        sendGET(GET_WEEKLY_REPORT, params)
             .then((jsonData) => {
                 setStocks(jsonData.data);
             });
-    }, [startDate, endDate]);
+    }, [startDate, endDate, id]);
 
     const handleDateRangeChange = (start: dayjs.Dayjs | null, end: dayjs.Dayjs | null) => {
         setStartDate(start);

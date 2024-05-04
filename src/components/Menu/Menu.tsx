@@ -8,17 +8,19 @@ import StockIcon from "../../assets/Icons/stock.png";
 import UserIcon from "../../assets/Icons/user.svg";
 import { DownOutlined } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
+import {GET_BRANCHES} from "../../utils/apiRoute.ts";
+import {sendGET} from "../../utils/apiHelper.ts";
 
 const Menu: React.FC = () => {
     const [locations, setLocations] = useState([]);
     const [currentLocation, setCurrentLocation] = useState('');
 
     useEffect(() => {
-        fetch("http://localhost:3000/branch/", {credentials: 'include'})
-            .then((result) => {
-                return result.json();
-            })
+        sendGET(GET_BRANCHES, [])
             .then((jsonData) => {
+                if(jsonData.data.map === undefined){
+                    setLocations([]);
+                }
                 setLocations(jsonData.data);
                 const firstLocation = jsonData.data[0];
                 setCurrentLocation(firstLocation._id);

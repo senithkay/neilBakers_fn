@@ -3,6 +3,8 @@ import styles from "./navbar.module.scss";
 import ProfileIcon from "../../assets/Images/profile-pic.png";
 import { CaretDownOutlined } from "@ant-design/icons";
 import {useNavigate} from "react-router-dom";
+import {GET_TEMP_USER, LOGOUT_USER} from "../../utils/apiRoute.ts";
+import {sendGET} from "../../utils/apiHelper.ts";
 
 const Navbar: React.FC = () => {
     const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
@@ -13,15 +15,13 @@ const Navbar: React.FC = () => {
 
 
     useEffect(() => {
-        fetch("http://localhost:3000/temporary/user", {credentials: 'include'})
-            .then((result) => {
-                if (result.status === 401){
-                    navigate('/signin')
-                }
-                return result.json();
-            })
+        sendGET(GET_TEMP_USER, [])
             .then((jsonData) => {
-                console.log(JSON.stringify(jsonData.data));
+                if (jsonData.data === undefined){
+                    setUser({
+                        username:''
+                    });
+                }
                 setUser(jsonData.data);
             });
         const handleClickOutside = (event: MouseEvent) => {
@@ -44,11 +44,7 @@ const Navbar: React.FC = () => {
     };
 
     const handleSignOut = () => {
-        fetch("http://localhost:3000/auth/logout", {credentials: 'include'})
-            .then((result) => {
-                return result.json();
-            })
-            .then(() => {
+        sendGET(LOGOUT_USER, []).then(() => {
                 navigate('/signin')
             });
     };

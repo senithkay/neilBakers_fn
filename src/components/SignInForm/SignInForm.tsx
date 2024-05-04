@@ -1,31 +1,19 @@
 import styles from "./signInForm.module.scss";
 import Logo from "../../assets/Logo/logo.png";
 import {useState} from "react";
-import {ACTION_TYPES} from "../../utils/enums.ts";
-import store from "../../redux/store.ts";
 import { useNavigate } from "react-router-dom";
+import {AUTH_USER} from "../../utils/apiRoute.ts";
+import {sendPOST} from "../../utils/apiHelper.ts";
 
-//{setUser}: {setUser: ()=>any} add this to props when redux implement
 const SignInForm = () => {
 
     const [credentials, setCredentials] = useState({});
     const navigate = useNavigate();
     const handleSignin = (event:any)=>{
         event.preventDefault();
-        fetch("http://localhost:3000/auth/login", {
-            method: "POST",
-            body: JSON.stringify(credentials),
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-            credentials: 'include'
-        }).then((response)=>{
-            return response.json();
-        }).then((result)=>{
+        sendPOST(AUTH_USER, credentials)
+        .then((result)=>{
             if (result.data._id){
-                store.dispatch({type: ACTION_TYPES.USER_AUTHORIZED, payload:{description: null, extra:{}}})
-                //ToDO: handle route to homepage and save data
                 navigate('/')
             }
         })

@@ -2,6 +2,8 @@ import styles from "./addUser.module.scss";
 import Logo from "../../assets/Logo/logo.png";
 import { useEffect, useState } from "react";
 import { navigate } from "vike/client/router";
+import {sendGET, sendPOST} from "../../utils/apiHelper.ts";
+import {GET_BRANCHES, SAVE_USER} from "../../utils/apiRoute.ts";
 
 const AddUser = () => {
   const [user, setUser] = useState({});
@@ -9,19 +11,7 @@ const AddUser = () => {
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    fetch("http://localhost:3000/user/", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      credentials: 'include',
-      body: JSON.stringify(user),
-    })
-      .then((result) => {
-        return result.json();
-      })
-      .then(async (jasonData) => {
+    sendPOST(SAVE_USER, user).then(async (jasonData) => {
         if (jasonData.data._id !== undefined) {
           await navigate("/users");
         }
@@ -29,11 +19,8 @@ const AddUser = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:3000/branch/", {credentials:'include'})
-      .then((result) => {
-        return result.json();
-      })
-      .then((jsonData) => {
+    sendGET(GET_BRANCHES, [])
+       .then((jsonData) => {
         setLocations(jsonData.data);
       });
   }, []);

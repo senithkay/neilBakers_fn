@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import styles from "./users.module.scss";
 import Logo from "../../assets/Logo/logo.png";
 import EditIcon from "../../assets/Icons/pen-icon.svg";
@@ -5,6 +6,8 @@ import DeleteIcon from "../../assets/Icons/delete-gray-icon.svg";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
+import {sendGET} from "../../utils/apiHelper.ts";
+import {GET_USER} from "../../utils/apiRoute.ts";
 
 const Users = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -16,10 +19,7 @@ const Users = () => {
     setUsers([...newUsers]);
   }
   useEffect(() => {
-    fetch("http://localhost:3000/user/", {credentials: 'include'})
-      .then((result) => {
-        return result.json();
-      })
+    sendGET(GET_USER, [])
       .then((jsonData) => {
         setUsers(jsonData.data);
       });

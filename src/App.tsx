@@ -14,9 +14,13 @@ import DailyStockReport from "./pages/DailyStockReport/DailyStockReport";
 import WeeklyStockReport from "./pages/WeekltStockReport/WeeklyStockReport";
 import MonthlystockReport from "./pages/MothlyStockReport/MonthlyStockReport";
 import ViewProducts from "./pages/ViewProduct/ViewProduct";
+import {history} from "./utils/common.ts";
+import {useNavigate, useLocation} from "react-router-dom";
 
 function App() {
     const Layout = () => {
+        history.navigate = useNavigate();
+        history.location = useLocation();
         return (
             <div className="main">
                 <div className="menuContainer">

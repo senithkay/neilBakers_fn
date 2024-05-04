@@ -2,6 +2,8 @@ import StockTable from "../../components/StockTable/StockTable";
 import styles from "./dailyStockUpdate.module.scss";
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
+import {sendGET, sendPOST} from "../../utils/apiHelper.ts";
+import {GET_PRODUCTS, GET_STOCK, SAVE_DAILY_STOCK} from "../../utils/apiRoute.ts";
 
 const DailyStockUpdate = () => {
     const [stock, setStock] = useState({})
@@ -12,22 +14,12 @@ const DailyStockUpdate = () => {
     const handleSubmit = (event: any) => {
         event.preventDefault();
         if (id !== undefined&& id.length>0){
-            fetch("http://localhost:3000/stock/", {
-                method: "POST",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-                credentials: 'include',
-                body: JSON.stringify({//ToDo change this to get the current branch
-                    branchId: id,
-                    stock: stock
-                }),
-            })
-                .then((result) => {
-                    return result.json();
-                })
-                .then(async (jsonData) => {
+            const payload = {
+                branchId: id,
+                stock: stock
+            }
+            sendPOST(SAVE_DAILY_STOCK, payload)
+            .then(async (jsonData) => {
                     if (jsonData.data._id !== undefined) {
                         const newStocks = stocks.filter((stock:any)=> (stock.productId.productName !== jsonData.data.productId.productName || stock.date !== jsonData.data.date) );
                         newStocks.push(jsonData.data)
@@ -37,18 +29,11 @@ const DailyStockUpdate = () => {
         }
     };
     useEffect(() => {
-        fetch("http://localhost:3000/product/",{credentials: 'include'})
-            .then((result) => {
-                return result.json();
-            })
-            .then((jsonData) => {
+        sendGET(GET_PRODUCTS, []).then((jsonData) => {
                 setProducts(jsonData.data);
-            });//ToDo: change this to get the current branch
-        fetch(`http://localhost:3000/stock/${id}`, {credentials: 'include'})
-            .then((result) => {
-                return result.json();
-            })
-            .then((jsonData) => {
+            });
+        const params = [{key: "id", value: id}];
+        sendGET(GET_STOCK, params).then((jsonData) => {
                 setStocks(jsonData.data);
             });
 

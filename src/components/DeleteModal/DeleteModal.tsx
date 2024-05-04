@@ -2,12 +2,13 @@ import React from "react";
 import styles from "./deleteModal.module.scss";
 import CloseOutlined from "@ant-design/icons/lib/icons/CloseOutlined";
 import DeleteIcon from "../../assets/Icons/delete-icon.svg";
+import {sendDELETE} from "../../utils/apiHelper.ts";
 
 interface DeleteModalProps {
   open: boolean;
   onClose: () => void;
   id: any;
-  deleteFunction: any;
+  deleteFunction: (id:string)=>any;
   type:string
 }
 
@@ -19,15 +20,11 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
 }) => {
   const handleDelete = () => {
     let url = ''
-    url =`http://localhost:3000/${type}/`
-    fetch(url + id, {
-      method: "Delete",
-      credentials:'include'
-    })
-      .then((result) => {
-        return result.json();
-      })
-      .then((jsonData) => {
+    url =`/${type}`
+    const params = [{key: id, value: id}];
+    onClose()
+    sendDELETE(url, params)
+   .then((jsonData) => {
         if (jsonData.data._id !== undefined) {
           deleteFunction(jsonData.data._id);
           onClose();

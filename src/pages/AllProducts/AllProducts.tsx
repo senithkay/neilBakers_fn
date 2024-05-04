@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
 import ProductTable from "../../components/ProductsTable/ProductsTable";
 import styles from "./allProducts.module.scss";
+import {sendGET} from "../../utils/apiHelper.ts";
+import {GET_PRODUCTS} from "../../utils/apiRoute.ts";
 
 const AllProducts = () => {
   const [tableData, setTableData] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3000/product/", {credentials: 'include'})
-      .then((result) => {
-        return result.json();
-      })
-      .then((jsonData) => {
+    sendGET(GET_PRODUCTS, []).then((jsonData) => {
         setTableData(jsonData.data);
       });
   }, []);
+
+  const onDelete = (id:string)=> {
+    const newTableData = tableData.filter((item:any) => item._id !== id);
+    setTableData([...newTableData]);
+  }
 
 
   return (
@@ -34,7 +37,7 @@ const AllProducts = () => {
           </select>
         </div>
       </div>
-      <ProductTable data={tableData} />
+      <ProductTable onDelete={onDelete} data={tableData} />
     </div>
   );
 };

@@ -15,8 +15,6 @@ interface TableComponentProps {
 
 const StockTable: React.FC<TableComponentProps> = ({ data }) => {
     const [currentPage, setCurrentPage] = useState<number>(1);
-
-
     const itemsPerPage: number = 10;
     const totalPages: number = Math.ceil(data.length / itemsPerPage);
 

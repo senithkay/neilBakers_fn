@@ -4,6 +4,8 @@ import type { DatePickerProps } from "antd";
 import { DatePicker } from "antd";
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
+import {sendGET} from "../../utils/apiHelper.ts";
+import {GET_DAILY_REPORT} from "../../utils/apiRoute.ts";
 
 const DailyStockReport = () => {
     const [stocks, setStocks] = useState([]);
@@ -12,10 +14,8 @@ const DailyStockReport = () => {
     const {id} = useParams();
     useEffect(() => {
         if(!(date===undefined || date === '' || date === null) && id !== undefined){
-            fetch(`http://localhost:3000/report/daily/${id}/${date}`,{credentials: 'include'})
-                .then((result) => {
-                    return result.json();
-                })
+            const params = [{key: 'id', value: id}, {key: 'date', value: date}];
+            sendGET(GET_DAILY_REPORT, params)
                 .then((jsonData) => {
                     setStocks(jsonData.data);
                 });

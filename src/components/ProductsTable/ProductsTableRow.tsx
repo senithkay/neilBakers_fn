@@ -11,18 +11,20 @@ interface TableRowProps {
     product: React.ReactNode;
     sku: string;
     id:string
+    onDelete: (id: string) => void;
 }
 
 const TableRow: React.FC<TableRowProps> = ({
     product,
     sku,
-    id
+    id,
+    onDelete
 }) => {
     const [openModal, setOpenModal] = useState(false);
 
     return (
         <tr className={Styles.tr}>
-            <DeleteModal type={'product'} deleteFunction={()=>{}}
+            <DeleteModal type={'product'} deleteFunction={onDelete}
                          id={id} open={openModal} onClose={() => setOpenModal(false)} />
             <div className={Styles.td}>
                 <td className={Styles.td1}>

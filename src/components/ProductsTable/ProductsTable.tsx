@@ -8,11 +8,12 @@ interface TableComponentProps {
   data: {
     productName: React.ReactNode;
     sku: string;
-    _id:string
+    _id:string;
   }[];
+  onDelete: (id:string) => void;
 }
 
-const ProductTable: React.FC<TableComponentProps> = ({ data }) => {
+const ProductTable: React.FC<TableComponentProps> = ({ data, onDelete }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const itemsPerPage: number = 10;
@@ -34,7 +35,7 @@ const ProductTable: React.FC<TableComponentProps> = ({ data }) => {
     return data
       .slice(startIndex, endIndex)
       .map((item, index) => (
-        <TableRow id={item._id} key={index} product={item.productName} sku={item.sku} />
+        <TableRow onDelete={onDelete} id={item._id} key={index} product={item.productName} sku={item.sku} />
       ));
   };
 

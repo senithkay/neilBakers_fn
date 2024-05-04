@@ -3,6 +3,8 @@ import styles from "./addProducts.module.scss";
 import React, {useState} from "react";
 import {CloseOutlined, CloudUploadOutlined} from "@ant-design/icons";
 import { useParams , useNavigate} from 'react-router-dom';
+import {sendPOSTFORMDATA} from "../../utils/apiHelper.ts";
+import {SAVE_PRODUCT} from "../../utils/apiRoute.ts";
 
 const AddProducts: React.FC = () => {
     const [inputData, setInputData] = useState<any>({});
@@ -52,15 +54,8 @@ const AddProducts: React.FC = () => {
         formData.append('description', inputData.description)
         formData.append('price', inputData.price)
         formData.append('image', files[0])
-        fetch("http://localhost:3000/product/", {
-            method: "POST",
-            body: formData,
-            credentials :'include'
-        })
-            .then((result) => {
-                return result.json();
-            })
-            .then(async (jasonData) => {
+        sendPOSTFORMDATA(SAVE_PRODUCT, formData)
+        .then(async (jasonData) => {
                 if (jasonData.data._id !== undefined) {
                     navigate('/products')
                 }

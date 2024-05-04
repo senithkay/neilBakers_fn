@@ -4,6 +4,8 @@ import { DatePicker } from "antd";
 import MonthlyStockTable from "../../components/MonthlyStockTable/MonthlyStockTable";
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
+import {sendGET} from "../../utils/apiHelper.ts";
+import {GET_DASHBOARD_MONTHLY_REPORT} from "../../utils/apiRoute.ts";
 
 const MonthlystockReport = () => {
     const [stocks, setStocks] = useState([]);
@@ -12,11 +14,8 @@ const MonthlystockReport = () => {
     const {id} = useParams();
     useEffect(() => {
         if(!(date===undefined || date === '' || date === null)){
-            fetch(`http://localhost:3000/report/monthly/${id}/${date}`, {credentials: 'include'})
-                .then((result) => {
-                    return result.json();
-                })
-                .then((jsonData) => {
+            const params = [{key: 'id', value: id}, {key: 'date', value: date}];
+            sendGET(GET_DASHBOARD_MONTHLY_REPORT, params).then((jsonData) => {
                     setStocks(jsonData.data);
                 });
         }
